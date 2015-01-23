@@ -1,32 +1,12 @@
-AWS Flow Framework for Ruby: Deployment Sample Application
-==========================================================
+AWS Flow Framework for Ruby: FileProcessing Sample Application
+==============================================================
 
-The *Deployment* sample illustrates the deployment of a set of
-application components through a workflow. A YAML configuration file is
-used to describe the application stack. The workflow takes this
-description as input and simulates the deployment of the components
-specified in it.
+The *FileProcessing* sample demonstrates a media processing use case.
+The workflow downloads a file from an Amazon S3 bucket, creates a
+`.zip` file and then uploads the file back to Amazon
+S3. The task routing feature in Amazon SWF is illustrated in this
+sample.
 
-Prerequisites
--------------
-
-The *AWS Flow Framework for Ruby* is required, which can be obtained and
-installed using the information here:
-
--   [https://aws.amazon.com/swf/flow/](https://aws.amazon.com/swf/flow/)
-
-If you already have [Ruby](https://www.ruby-lang.org/) and
-[RubyGems](http://rubygems.org/) installed, you can install the
-framework by opening a terminal window and typing:
-
-~~~~
-gem install aws-flow
-~~~~
-
-For more information about setting up the AWS Flow Framework for Ruby,
-see [Installing the AWS Flow Framework for
-Ruby](http://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/installing.html)
-in the *AWS Flow Framework for Ruby Developer Guide*.
 
 Downloading the Sample Code
 ---------------------------
@@ -36,17 +16,47 @@ recipes and samples, go to:
 
 -   [https://github.com/awslabs/aws-flow-ruby-samples](https://github.com/awslabs/aws-flow-ruby-samples)
 
+
+Prerequisites for Running the Samples
+-------------------------------------
+
+The *AWS Flow Framework for Ruby* is required, which can be obtained and
+installed using the information here:
+
+-   [https://aws.amazon.com/swf/flow/](https://aws.amazon.com/swf/flow/)
+
+If you already have [Ruby](https://www.ruby-lang.org/) and
+[RubyGems](http://rubygems.org/) installed, you can install the framework and
+all of the gems required by the samples by opening a terminal window, changing
+to the directory where you've cloned or downloaded the samples, and typing:
+
+~~~~
+bundle install
+~~~~
+
+This will install all of the requirements that are listed in the `Gemfile` in
+the repository's base directory.
+
+For more information about setting up the AWS Flow Framework for Ruby,
+see [Installing the AWS Flow Framework for
+Ruby](http://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/installing.html)
+in the *AWS Flow Framework for Ruby Developer Guide*.
+
+> **Note:** For the FileProcessing sample, you will also need to modify the file
+> `file_processing_utils.rb`, changing the value of `TARGET_BUCKET` to an Amazon
+> S3 bucket name that is owned by your account.
+
 Run the Sample
 --------------
 
-**To run the Deployment sample:**
+**To run the FileProcessing sample:**
 
 1.  Open *three* separate terminal windows and, in each one, change to
     the `lib` directory in the location where you
     cloned or unarchived the sample code. For example:
 
     ~~~~
-    cd ~/Downloads/aws-flow-ruby-samples/samples/deployment/lib
+    cd ~/Downloads/aws-flow-ruby-samples/Samples/file_processing/lib
     ~~~~
 
 2.  In each command-line (terminal) window, execute the following
@@ -71,11 +81,13 @@ Run the Sample
 3.  Execute the following commands, one in each of the terminal windows:
 
     ~~~~
-    ruby deployment_activity.rb
+    ruby host_specific_worker.rb
 
-    ruby deployment_workflow.rb
+    ruby common_tasklist_worker.rb
 
-    ruby deployment_workflow_starter.rb
+    ruby file_processing_workflow.rb
+
+    ruby file_processing_workflow_starter.rb
     ~~~~
 
 For More Information

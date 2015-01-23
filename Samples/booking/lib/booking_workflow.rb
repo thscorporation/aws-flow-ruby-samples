@@ -1,4 +1,5 @@
-require 'flow/activities'
+require_relative 'booking_activity'
+require_relative '../booking_utils'
 
 # BookingWorkflow class defines the workflows for the Booking sample
 class BookingWorkflow
@@ -7,7 +8,8 @@ class BookingWorkflow
   # Use the workflow method to define workflow entry point.
   workflow :make_booking do
     {
-      version: "1.0",
+      version: BookingUtils::WF_VERSION,
+      default_task_list: BookingUtils::WF_TASKLIST,
       default_execution_start_to_close_timeout: 120
     }
   end
@@ -53,3 +55,6 @@ class BookingWorkflow
     decision_context.workflow_clock.replaying
   end
 end
+
+# Start a WorkflowWorker to work on the BookingWorkflow tasks
+BookingUtils.new.workflow_worker.start if $0 == __FILE__

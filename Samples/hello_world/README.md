@@ -1,11 +1,10 @@
-AWS Flow Framework for Ruby: Booking Sample Application
-=======================================================
+AWS Flow Framework for Ruby: HelloWorld Sample Application
+==========================================================
 
-The *Booking* sample demonstrates a
-[synchronization](http://docs.aws.amazon.com/amazonswf/latest/awsrbflowguide/programming-workflow-patterns.html#programming-workflow-patterns-synchronization)
-workflow pattern. It waits for two activities to complete: a car
-reservation and airline reservation. When both activities complete, it
-sends a confirmation. All activities are performed asynchronously.
+The *HelloWorld* sample uses a very simple workflow that calls an
+activity to print Hello World. It shows basic usage of the framework,
+including implementing activities and workflow coordination logic and
+building workers to run the workflow and activities.
 
 Prerequisites
 -------------
@@ -39,14 +38,14 @@ recipes and samples, go to:
 Run the Sample
 --------------
 
-**To run the Booking sample:**
+**To run the HelloWorld sample:**
 
-1.  Open *two* separate terminal windows and, in each one, change to
-    the `booking` directory in the location where you
+1.  Open *three* separate terminal windows and, in each one, change to
+    the `lib` directory in the location where you
     cloned or unarchived the sample code. For example:
 
     ~~~~
-    cd ~/Downloads/aws-flow-ruby-samples/samples/booking
+    cd ~/Downloads/aws-flow-ruby-samples/Samples/hello_world/lib
     ~~~~
 
 2.  In each command-line (terminal) window, execute the following
@@ -71,9 +70,11 @@ Run the Sample
 3.  Execute the following commands, one in each of the terminal windows:
 
     ~~~~
-    aws-flow-ruby -f worker.json
+    ruby helloworld_activity.rb
 
-    ruby starter.rb
+    ruby helloworld_workflow.rb
+
+    ruby helloworld_workflow_starter.rb
     ~~~~
 
 For More Information
